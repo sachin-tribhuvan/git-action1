@@ -1,0 +1,23 @@
+name: Public Repo CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+# Restrict default token permissions for public repo security
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Download your repository code onto the runner
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Run your build or test commands
+      - name: Run build and tests
+        run: |
+          echo "Hello world - ${{github.repository}}"
